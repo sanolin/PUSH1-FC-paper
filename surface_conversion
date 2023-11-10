@@ -1,0 +1,5 @@
+#convert preprocessed bold volumes into surface
+#rh
+/Applications/freesurfer/bin/mri_vol2surf --mov /Users/sara/Downloads/testfiles/boldtest.nii.gz --out /Users/sara/Downloads/testfiles/outputs/BOLDsurfrh.mgh --regheader fsaverage6 --hemi rh
+#lh
+/Applications/freesurfer/bin/mri_vol2surf --mov /Users/sara/Downloads/testfiles/boldtest.nii.gz --out /Users/sara/Downloads/testfiles/outputs/BOLDsurflh.mgh --regheader fsaverage6 --hemi lh
