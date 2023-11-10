@@ -1,5 +1,35 @@
 #convert preprocessed bold volumes into surface
+
+#set location of where freesurfer software
+export FREESURFER_HOME='/Applications/freesurfer'
+#set location of recon outputs- here just fsaverage since everything is already is fsaverage space
+export SUBJECTS_DIR='/Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/Sara/01_Protocols/'
+
+
+for patient in 0 1 2 3 4 5 6 7 8 9
+do
+echo $patient
+
+#create output folder
+cd /Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/Sara/02_Data
+mkdir($patient)
+
+#scan 10
 #rh
-/Applications/freesurfer/bin/mri_vol2surf --mov /Users/sara/Downloads/testfiles/boldtest.nii.gz --out /Users/sara/Downloads/testfiles/outputs/BOLDsurfrh.mgh --regheader fsaverage6 --hemi rh
+/Applications/freesurfer/bin/mri_vol2surf --mov /Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/MCI_Results/Preprocess_Results/$patient/2022*/Preprocess/vol/$patient_bld010_rest_reorient_skip_faln_mc_g1000000000_bpss_resid_FS1mm_FS2mm_sm6_subrun0.nii.gz --out /Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/Sara/02_Data/$patient/BOLDsurfrh.mgh --regheader fsaverage6 --hemi rh
 #lh
-/Applications/freesurfer/bin/mri_vol2surf --mov /Users/sara/Downloads/testfiles/boldtest.nii.gz --out /Users/sara/Downloads/testfiles/outputs/BOLDsurflh.mgh --regheader fsaverage6 --hemi lh
+/Applications/freesurfer/bin/mri_vol2surf --mov /Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/MCI_Results/Preprocess_Results/$patient/2022*/Preprocess/vol/$patient_bld010_rest_reorient_skip_faln_mc_g1000000000_bpss_resid_FS1mm_FS2mm_sm6_subrun0.nii.gz --out /Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/Sara/02_Data/$patient/BOLDsurflh.mgh --regheader fsaverage6 --hemi lh
+
+#scan 11
+#rh
+/Applications/freesurfer/bin/mri_vol2surf --mov /Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/MCI_Results/Preprocess_Results/P101/2022-07-14-09-10-12-P101/Preprocess/vol/P101_bld010_rest_reorient_skip_faln_mc_g1000000000_bpss_resid_FS1mm_FS2mm_sm6_subrun0.nii.gz --out /Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/Sara/02_Data/$patient/BOLDsurfrh.mgh --regheader fsaverage6 --hemi rh
+#lh
+/Applications/freesurfer/bin/mri_vol2surf --mov /Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/MCI_Results/Preprocess_Results/P101/2022-07-14-09-10-12-P101/Preprocess/vol/P101_bld010_rest_reorient_skip_faln_mc_g1000000000_bpss_resid_FS1mm_FS2mm_sm6_subrun0.nii.gz --out /Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/Sara/02_Data/$patient/BOLDsurflh.mgh --regheader fsaverage6 --hemi lh
+
+#scan 12
+#rh
+/Applications/freesurfer/bin/mri_vol2surf --mov /Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/MCI_Results/Preprocess_Results/P101/2022-07-14-09-10-12-P101/Preprocess/vol/P101_bld010_rest_reorient_skip_faln_mc_g1000000000_bpss_resid_FS1mm_FS2mm_sm6_subrun0.nii.gz --out /Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/Sara/02_Data/$patient/BOLDsurfrh.mgh --regheader fsaverage6 --hemi rh
+#lh
+/Applications/freesurfer/bin/mri_vol2surf --mov /Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/MCI_Results/Preprocess_Results/P101/2022-07-14-09-10-12-P101/Preprocess/vol/P101_bld010_rest_reorient_skip_faln_mc_g1000000000_bpss_resid_FS1mm_FS2mm_sm6_subrun0.nii.gz --out /Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/Sara/02_Data/$patient/BOLDsurflh.mgh --regheader fsaverage6 --hemi lh
+
+done
