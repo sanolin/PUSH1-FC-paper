@@ -5,8 +5,10 @@ export FREESURFER_HOME='/Applications/freesurfer'
 #set location of recon outputs- here just fsaverage since everything is already is fsaverage space
 export SUBJECTS_DIR='/Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/Sara/01_Protocols/'
 
+#number of participant folders to process
+count=(seq 1 40);
 
-for patient in 0 1 2 3 4 5 6 7 8 9
+for patient in count
 do
 echo $patient
 
