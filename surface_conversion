@@ -5,10 +5,10 @@ export FREESURFER_HOME='/Applications/freesurfer'
 #set location of recon outputs- here just fsaverage since everything is already is fsaverage space
 export SUBJECTS_DIR='/Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/Sara/01_Protocols/'
 #identify participants in the input folders
-patients=$(find /Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/MCI_Results/Preprocess_Results/* -maxdepth 0 -type d)
+patients=/Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/MCI_Results/Preprocess_Results/;
 
 #loop through participant folders and convert bold preprocessed data from volume to surface lh and rh
-for patient in $patients
+for patient in `ls -1 $patients`
 do
 echo $patient
 
