@@ -3,10 +3,10 @@
 %location of participants data
 patients = dir('/Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/Sara/02_Data/P*');
 datahome='/Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/Sara/02_Data/';
-for patient = 1%:length(patients) 
+for patient = 1:length(patients) 
     patient=patients(patient).name
-    cd(datahome)
-    cd(patient)
+    cd(datahome);
+    cd(patient);
       for scan = 1:3
       %load mgh surface overlap files
       rh=['BOLDsurfrh', num2str(scan), '.mgh'];
