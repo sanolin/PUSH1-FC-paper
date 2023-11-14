@@ -8,7 +8,7 @@ export SUBJECTS_DIR='/Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_An
 patients=$(find /Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/MCI_Results/Preprocess_Results/* -maxdepth 0 -type d)
 
 #loop through participant folders and convert bold preprocessed data from volume to surface lh and rh
-for patient in patients
+for patient in $patients
 do
 echo $patient
 
