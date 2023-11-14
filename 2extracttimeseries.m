@@ -1,11 +1,15 @@
-%loads surface overlays of cleaned bold data, pulls out timeseries, and concatenates 3 scans
+%%loads surface overlays of cleaned bold data, pulls out timeseries, and concatenates 3 scans
+
+%location of participants data
 patients = dir('/Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/Sara/02_Data/P*');
 
-for patient in 1:length(patients) 
-      for scan in 1:3
+for patient = 1%:length(patients) 
+      for scan = 1:3
       %load mgh surface overlap files
-      R=load_mgh('BOLDsurfrh(scan).mgh');
-      L=load_mgh('BOLDsurflh(scan).mgh');
+      rh=['BOLDsurfrh', num2str(scan), '.mgh'];
+      R=load_mgh(rh);
+      lh=['BOLDsurfrh', num2str(scan), '.mgh'];
+      L=load_mgh(lh);
       
       %created plot of data if wanted
       %stackedplot(L);
@@ -14,13 +18,20 @@ for patient in 1:length(patients)
       timeseriesL =squeeze(L);
       timeseriesR=squeeze(R);
     
-            if scan=1
-            %concatenate 3 scans
+            if scan==1
             alltimeseriesL=(timeseriesL);
             alltimeseriesR=(timeseriesR);
             else
-            alltimeseriesL=cat(alltimeseries, timeseriesL);
-            alltimeseriesR=cat(alltimeseries, timeseriesR);
+            %concatenate 3 scans
+            alltimeseriesL=cat(2, alltimeseriesL, timeseriesL);
+            alltimeseriesR=cat(2, alltimeseriesR, timeseriesR);
             end
       end
+%export excel file of full timeseries data
+T = array2table(alltimeseriesR);
+filenameT = ['/Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/Sara/02_Data/', patient, 'RHfulltimeseries.xlsx'];
+writetable(T,filenameT);
+S = array2table(alltimeseriesL);
+filenameS = ['/Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/Sara/02_Data/', patient, 'RHfulltimeseries.xlsx'];
+writetable(S,filenameS);
 end
