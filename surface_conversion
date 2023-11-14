@@ -8,6 +8,7 @@ export SUBJECTS_DIR='/Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_An
 #number of participant folders to process
 count=(seq 1 40);
 
+
 for patient in count
 do
 echo $patient
