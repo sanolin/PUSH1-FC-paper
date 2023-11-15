@@ -4,8 +4,7 @@
 NodeNetworkMembership=MBARROIs{:,3};
 [a_sorted, a_order] = sort(NodeNetworkMembership);
 
-
-subs=dir(['/data/project/vislab/a/MBAR/Anat_preproc/derivatives/ciftify_xcpengine/sub*']);
+subs = dir('/Users/sara/Desktop/02_Data/P*');
 %% Make sorted individual matrices
 for ii= 1:length(subs)
     sub=subs(ii).name
