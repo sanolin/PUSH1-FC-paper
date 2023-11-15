@@ -1,1 +1,58 @@
-%code to 
+%code to sort timeseries data by yeo parcellation and create correlation matrix then create a group averaged correlation matrix with labels
+
+%% load Yeo networks parcellation to have a sorted vertex x membership "key"
+NodeNetworkMembership=MBARROIs{:,3};
+[a_sorted, a_order] = sort(NodeNetworkMembership);
+
+
+subs=dir(['/data/project/vislab/a/MBAR/Anat_preproc/derivatives/ciftify_xcpengine/sub*']);
+%% Make sorted individual matrices
+for ii= 1:length(subs)
+    sub=subs(ii).name
+    %if exist(['/data/project/vislab/a/MBAR_systemsegregation/correlation_matrices/' sub '.timeseries_cleanleft.func.gii'], 'file') ==2
+    %set up function variables
+    gL = ['/data/project/vislab/a/MBAR/Anat_preproc/derivatives/ciftify_xcpengine/' sub '/' sub '_L.fs_LR_32k.func.gii'];
+    gR = ['/data/project/vislab/a/MBAR/Anat_preproc/derivatives/ciftify_xcpengine/' sub '/' sub '_R.fs_LR_32k.func.gii'];
+    roiL = '/data/project/vislab/a/MBAR/MBAR_systemsegregation/MBAR_nodes/ROIs/dots/MBAR_boundary_minimaROIs_32k_fsLR_L.func.gii';
+    roiR = '/data/project/vislab/a/MBAR/MBAR_systemsegregation/MBAR_nodes/ROIs/dots/MBAR_boundary_minimaROIs_32k_fsLR_R.func.gii';
+
+    %extract the nodesxtimepoints matrix
+    [z, r, tp] = fsLR2roizmat(gL, gR, roiL, roiR);
+    individualnodes = tp;
+    individualnodeswnetworknums=[NodeNetworkMembership individualnodes];
+    %sort the matrix by node network membership
+    individualnodessorted = individualnodeswnetworknums(a_order,:);
+    %% remove unwanted networks
+    %Association= 1, 2, 3, 4, 5
+    %S-M= 6, 7,8,9
+    %delete the rows of the unwanted networks (0s)
+    Del0=individualnodessorted(:,1)==0;
+    individualnodessorted(Del0,:)=[];
+    %save timepoints
+    save(['/data/project/vislab/a/MBAR/MBAR_systemsegregation/MBARnodes_Correlationmatrices/' sub '/' sub 'sortedtimepointswnetworks.mat'], 'individualnodessorted');
+    %remove network number ids from first column
+    individualnodessorted(:,1)=[];
+    %% run correlation on sorted matrix
+    r = corrcoef(individualnodessorted'); % Correlation matrix
+    z = 0.5 * log((1+r)./(1-r)); % Fisher-z transform
+    %save the z-matrix
+    save(['/data/project/vislab/a/MBAR/MBAR_systemsegregation/MBARnodes_Correlationmatrices/' sub '/' sub 'funccorrsorted.mat'], 'z');
+    %remove negative z values and save
+    individualcorrpossort = max(0, z);
+    save(['/data/project/vislab/a/MBAR/MBAR_systemsegregation/MBARnodes_Correlationmatrices/' sub '/' sub 'funccorrpossorted.mat'], 'individualcorrpossort');
+    %else
+    %end
+end
+%% make a group average matrix of sorted correlation values
+for ii=1:length(subs)
+    sub = subs(ii).name
+load(['/data/project/vislab/a/MBAR/MBAR_systemsegregation/MBARnodes_Correlationmatrices/' sub '/' sub 'funccorrpossorted.mat'])
+if ii==1
+    meancorr = individualcorrpossort;
+else
+    meancorr = meancorr + individualcorrpossort;
+end
+end
+meancorr = meancorr/ii;
+save('/data/project/vislab/a/MBAR/MBAR_systemsegregation/MBARnodes_Correlationmatrices/meanfunccorrpos.mat');
+imagesc(meancorr)
