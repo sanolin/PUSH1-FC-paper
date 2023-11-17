@@ -1,5 +1,22 @@
 %code to sort timeseries data by yeo parcellation and create correlation matrix then create a group averaged correlation matrix with labels
 
+
+
+
+
+
+%set location of label.gii files
+LHlabels='/Users/sara/Desktop/labelfiles/Chan_nodes_fsavg6_LH.func.gii'; 
+RHlabels='/Users/sara/Desktop/labelfiles/Chan_nodes_fsavg6_RH.label.gii'; 
+
+%uses gifti toolbox to load giftis
+LHrois=gifti(LHlabels);
+RHrois=gifti(RHlabels);
+
+roiL = LHrois.cdata;
+roiR = RHrois.cdata;
+
+
 %% load Yeo networks parcellation to have a sorted vertex x membership "key"
 [vertices label ctab]=read_annotation('/Users/sara/Desktop/Yeo_fsaverage6/label/rh.Yeo2011_7Networks_N1000.annot');
 NodeNetworkMembership = changem(label,0,65793);
@@ -55,6 +72,20 @@ for ii= 1:length(subs)
                     alltimeseriesR=cat(2, alltimeseriesR, timeseriesR);
                     end
                 end
+    
+   
+    glm = zeros(size(roiL,2),size(alltimeseriesL,2)); %Left
+    grm = zeros(size(roiR,2),size(alltimeseriesR,2)); %Right       
+    for j = 1:size(roiL,2) % loop ROIs
+        glm(j,:) = mean(alltimeseriesL(roiL(:,j)~=0, :));
+    end
+
+    for k = 1:size(roiR,2)
+        grm(k,:) = mean(alltimeseriesR(roiR(:,k)~=0, :));
+    end
+
+ 
+                
     %sort the matrix by node network membership
     sortedlhtp = alltimeseriesL(lh_order,:);
     sortedrhtp = alltimeseriesR(rh_order,:);
