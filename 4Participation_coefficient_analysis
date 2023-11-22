@@ -1,0 +1,30 @@
+%Script to call participation_coef function
+
+%W is correlation matrix
+%Ci is community affiliation vector (one column with every node as a row
+%with the value of what network number it belongs to)
+addpath '/Users/sara/Desktop'
+addpath '/Users/sara/Desktop/BCT/2019_03_03_BCT'
+load('nodesID_sorted.mat')
+
+%% Run participation coefficient on all nodes in dots parcellation
+subs = dir('/Users/sara/Desktop/02_Data/P*');
+
+for ii= 1:length(subs)
+    sub=subs(ii).name
+    load(['/Users/sara/Desktop/02_Data/' sub '/' sub 'funccorrsorted_zmatrix_posonly.mat']);
+    %Change "inf" values in the correlation matrix to "0" since the
+    %function will error out with any "inf" in the matrix
+    diagonalMask = logical(eye(size(individualcorrpossort)));
+    individualcorrpossort(diagonalMask) = 0;
+    %set the inputs
+    W=individualcorrpossort;
+    Ci=netsorted;
+    %run participation coefficient on all nodes
+    P=participation_coef(W,Ci);
+    %save participation coeffiecients to participant folders
+    save(['/Users/sara/Desktop/02_Data/' sub '/' sub 'nodes_pcoef.mat'], 'P');
+end
+
+%% Subset desired nodes
+%V1 RH?
