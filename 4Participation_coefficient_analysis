@@ -27,4 +27,24 @@ for ii= 1:length(subs)
 end
 
 %% Subset desired nodes
-%V1 RH?
+sz = [length(subs) 4];
+varTypes = ["string","double","double","double"];
+varNames = ["ID","V1_RH","FPN_RH","FPN_LH"];
+pcoefanalysis = table('Size',sz,'VariableTypes',varTypes,'VariableNames',varNames);
+for ii= 1:length(subs)
+    sub=subs(ii).name
+    pcoefanalysis(ii,1) = {sub}; %put participant id into table
+    load(['/Users/sara/Desktop/02_Data/' sub '/' sub 'nodes_pcoef.mat']);
+        %V1 RH aka node 386 aka row 238
+        V1={P(236,1)};
+        pcoefanalysis(ii,2)=(V1);
+        %FPN RH aka node 201 aka row 108
+        FR={P(108,1)};
+        pcoefanalysis(ii,3)=(FR);
+        %FPN LH aka node 202 aka row 93
+        FL={P(93,1)};
+        pcoefanalysis(ii,4)=(FL);    
+           
+end
+filename = 'participationcoef_PUSH1.xlsx';
+writetable(pcoefanalysis,filename);
