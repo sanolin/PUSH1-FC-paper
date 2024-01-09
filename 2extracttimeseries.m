@@ -1,8 +1,8 @@
-%%loads surface overlays of cleaned bold data, pulls out timeseries, and concatenates 3 scans
+%% loads surface overlays of cleaned bold data, pulls out timeseries, and concatenates 3 scans
 
 %location of participants data
-patients = dir('/Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/Sara/02_Data/P*');
-datahome='/Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/Sara/02_Data/';
+patients = dir('/Users/sara/Desktop/02_Data/P*');
+datahome='/Users/sara/Desktop/02_Data/';
 for patient = 1:length(patients) 
     patient=patients(patient).name
     cd(datahome);
@@ -11,7 +11,7 @@ for patient = 1:length(patients)
       %load mgh surface overlap files
       rh=['BOLDsurfrh', num2str(scan), '.mgh'];
       R=load_mgh(rh);
-      lh=['BOLDsurfrh', num2str(scan), '.mgh'];
+      lh=['BOLDsurflh', num2str(scan), '.mgh'];
       L=load_mgh(lh);
       
       %created plot of data if wanted
@@ -32,9 +32,9 @@ for patient = 1:length(patients)
       end
 %export excel file of full timeseries data
 T = array2table(alltimeseriesR);
-filenameT = ['/Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/Sara/02_Data/', patient, '/RHfulltimeseries.xlsx'];
+filenameT = ['/Users/sara/Desktop/02_Data/', patient, '/RHfulltimeseries.xlsx'];
 writetable(T,filenameT);
 S = array2table(alltimeseriesL);
-filenameS = ['/Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/fMRI_Analysis/Sara/02_Data/', patient, '/LHfulltimeseries.xlsx'];
+filenameS = ['/Users/sara/Desktop/02_Data/', patient, '/LHfulltimeseries.xlsx'];
 writetable(S,filenameS);
 end
