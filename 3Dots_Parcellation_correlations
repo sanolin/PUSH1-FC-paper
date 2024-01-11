@@ -63,7 +63,7 @@ for ii= 1:length(subs)
               %load mgh surface overlap files
               rh=['BOLDsurfrh', num2str(scan), '.mgh'];
               R=load_mgh(rh);
-              lh=['BOLDsurfrh', num2str(scan), '.mgh'];
+              lh=['BOLDsurflh', num2str(scan), '.mgh'];
               L=load_mgh(lh);
               
               %pull out timeseries data from 4d array mgh
