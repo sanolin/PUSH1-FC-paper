@@ -1,2 +1,3 @@
 ROI_conn.m creates the correlation between the ROI and all other vertices on the brain and exports it as a mgh file
 makesublist.m creates subject list for mrispreproc
+1mris_preproc.job run mrispreproc and sets environment and required files
