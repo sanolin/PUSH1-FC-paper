@@ -5,7 +5,7 @@
 %with the value of what network number it belongs to)
 addpath '/Users/sara/Desktop'
 addpath '/Users/sara/Desktop/BCT/2019_03_03_BCT'
-load('nodesID_sorted.mat')
+load('nodesIDsorted.mat')
 
 %% Run participation coefficient on all nodes in dots parcellation
 subs = dir('/Users/sara/Desktop/02_Data/P*');
@@ -27,14 +27,15 @@ for ii= 1:length(subs)
 end
 
 %% Subset desired nodes
-sz = [length(subs) 4];
-varTypes = ["string","double","double","double"];
-varNames = ["ID","V1_RH","FPN_RH","FPN_LH"];
+sz = [length(subs) 5];
+varTypes = ["string","double","double","double","double"];
+varNames = ["ID","V1_RH","FPN_RH","FPN_LH","FPN_LH2"];
 pcoefanalysis = table('Size',sz,'VariableTypes',varTypes,'VariableNames',varNames);
 for ii= 1:length(subs)
     sub=subs(ii).name
     pcoefanalysis(ii,1) = {sub}; %put participant id into table
     load(['/Users/sara/Desktop/02_Data/' sub '/' sub 'nodes_pcoef.mat']);
+    %conversion from node to row is as follows: 1) find desired node # within Channodesinfo.mat, 2) find the value of the node number in systemorder.mat and record row, 3) Subtract 108 from that row number, 4) find the new number in netorder.m and record row number. This is the index you will pull from pcoef.    
         %V1 RH aka node 386 aka row 238
         V1={P(236,1)};
         pcoefanalysis(ii,2)=(V1);
@@ -43,8 +44,10 @@ for ii= 1:length(subs)
         pcoefanalysis(ii,3)=(FR);
         %FPN LH aka node 202 aka row 93
         FL={P(93,1)};
-        pcoefanalysis(ii,4)=(FL);    
-           
+        pcoefanalysis(ii,4)=(FL); 
+        %FPN LH2 aka node 113 aka row 85
+        FL2={P(85,1)};
+        pcoefanalysis(ii,5)=(FL2);
 end
-filename = 'participationcoef_PUSH1.xlsx';
+filename = 'participationcoef_PUSH1_11624.xlsx';
 writetable(pcoefanalysis,filename);
