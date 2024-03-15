@@ -1,0 +1,8 @@
+diff=/Volumes/Teal square/efield_modeling/
+cd $diff
+
+for patient in *.nii;
+do 
+echo $patient
+charm --forceqform $patient $patient
+done
