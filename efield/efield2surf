@@ -1,0 +1,4 @@
+#convert T1 space efields into subject surface space
+mri_vol2surf --src /Volumes/Teal_square/efield_modeling/F3_simulations/P101_simnibs_simulation/subject_volumes/P101_TMS_1-0001_MagVenture_Cool-B65_scalar_magnE.nii.gz --out /Volumes/Teal_square/efield_modeling/F3_simulations/P101_simnibs_simulation/subject_overlays/magnF3.mgh --scrreg regheader --hemi lh
+#convert efields in subject surface space into fsaverage6 space
+mris_convert
