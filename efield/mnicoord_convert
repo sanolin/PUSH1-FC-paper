@@ -1,0 +1,2 @@
+#this converts brainsight outputs in MNI space into subject space which can then be used to run efield modeling
+mni2subject_coords -m /Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/efield_modeling/m2m/m2m_P119.nii -c -47.3 59.95 52.75 -o /Users/sara/Desktop/P119_coords/nativecoords.csv
