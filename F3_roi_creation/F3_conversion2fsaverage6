@@ -1,0 +1,3 @@
+export SUBJECTS_DIR='/Users/sara/Desktop/MNI_recon'
+export FREESURFER_HOME='/Applications/freesurfer'
+/Applications/freesurfer/bin/mri_label2label --srclabel F3.label --srcsubject mni_icbm --trglabel lh_F3_pial.label --trgsubject fsaverage6 --hemi lh --paint 30 pial --trgsurf pial
