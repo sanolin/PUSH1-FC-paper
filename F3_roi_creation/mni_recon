@@ -1,4 +1,0 @@
-export SUBJECTS_DIR='/Users/sara/Desktop/MNI_recon'
-export FREESURFER_HOME='/Applications/freesurfer'
-cd /Users/sara/Desktop/mni_raw
-/Applications/freesurfer/bin/recon-all -sd $SUBJECTS_DIR -s mni_icbm -i mni_icbm/t1.nii -all
