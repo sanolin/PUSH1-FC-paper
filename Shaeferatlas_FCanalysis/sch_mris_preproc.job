@@ -1,0 +1,45 @@
+
+
+parentdir=/Users/sara/Desktop
+recon=/Users/sara/Downloads
+
+#make folder to populate with data files
+in=$parentdir/02_Data
+cd $in
+
+#copy fsaverage folder to analysis folder
+cp -R $recon/fsaverage6 $in/fsaverage
+
+#set as Freesurfer subjects directory
+unset SUBJECTS_DIR
+SUBJECTS_DIR=$in
+export SUBJECTS_DIR
+export FREESURFER_HOME='/Applications/freesurfer'
+
+#make mris_preproc output folder
+cd $parentdir
+mkdir surface_analysis_sch
+out=$parentdir/surface_analysis_sch
+cd $out
+
+#location of participants you want to pull
+diff=$parentdir/02_Data
+
+#copy surf folder into participant folders
+cp -R $recon/fsaverage6/surf $in/$patient/
+
+
+#actually finally run mris_preproc with isp flags in exact same order as subject file list
+#see makingsublist.m for generating sublist for mris_preproc
+sublist=/Users/sara/Desktop/sublist.txt
+#make sure sublist only contains sub ids and not "name" at the top
+
+#Left Hemisphere 
+/Applications/freesurfer/bin/mris_preproc --target fsaverage --hemi lh --no-prune --isp $in/P101/lh.corrtosch172ROI.mgh --isp $in/P101b/lh.corrtosch172ROI.mgh --isp $in/P102/lh.corrtosch172ROI.mgh --isp $in/P102b/lh.corrtosch172ROI.mgh --isp $in/P103/lh.corrtosch172ROI.mgh --isp $in/P103b/lh.corrtosch172ROI.mgh --isp $in/P105/lh.corrtosch172ROI.mgh --isp $in/P105b/lh.corrtosch172ROI.mgh --isp $in/P106/lh.corrtosch172ROI.mgh --isp $in/P106b/lh.corrtosch172ROI.mgh --isp $in/P107/lh.corrtosch172ROI.mgh --isp $in/P107b/lh.corrtosch172ROI.mgh --isp $in/P109/lh.corrtosch172ROI.mgh --isp $in/P109b/lh.corrtosch172ROI.mgh --isp $in/P110/lh.corrtosch172ROI.mgh --isp $in/P110b/lh.corrtosch172ROI.mgh --isp $in/P112/lh.corrtosch172ROI.mgh --isp $in/P112b/lh.corrtosch172ROI.mgh --isp $in/P115/lh.corrtosch172ROI.mgh --isp $in/P115b/lh.corrtosch172ROI.mgh --isp $in/P116/lh.corrtosch172ROI.mgh --isp $in/P116b/lh.corrtosch172ROI.mgh --isp $in/P117/lh.corrtosch172ROI.mgh --isp $in/P117b/lh.corrtosch172ROI.mgh --isp $in/P118/lh.corrtosch172ROI.mgh --isp $in/P118b/lh.corrtosch172ROI.mgh --isp $in/P119/lh.corrtosch172ROI.mgh --isp $in/P119b/lh.corrtosch172ROI.mgh --isp $in/P120/lh.corrtosch172ROI.mgh --isp $in/P120b/lh.corrtosch172ROI.mgh --isp $in/P121/lh.corrtosch172ROI.mgh --isp $in/P121b/lh.corrtosch172ROI.mgh --isp $in/P122/lh.corrtosch172ROI.mgh --isp $in/P122b/lh.corrtosch172ROI.mgh --isp $in/P123/lh.corrtosch172ROI.mgh --isp $in/P123b/lh.corrtosch172ROI.mgh --isp $in/P124/lh.corrtosch172ROI.mgh --isp $in/P124b/lh.corrtosch172ROI.mgh --out $out/lh.paired-diff.mgh --f $sublist --paired-diff --no-cortex-only
+#compute left hemi mean
+/Applications/freesurfer/bin/mris_preproc --target fsaverage --hemi lh --no-prune --isp $in/P101/lh.corrtosch172ROI.mgh --isp $in/P101b/lh.corrtosch172ROI.mgh --isp $in/P102/lh.corrtosch172ROI.mgh --isp $in/P102b/lh.corrtosch172ROI.mgh --isp $in/P103/lh.corrtosch172ROI.mgh --isp $in/P103b/lh.corrtosch172ROI.mgh --isp $in/P105/lh.corrtosch172ROI.mgh --isp $in/P105b/lh.corrtosch172ROI.mgh --isp $in/P106/lh.corrtosch172ROI.mgh --isp $in/P106b/lh.corrtosch172ROI.mgh --isp $in/P107/lh.corrtosch172ROI.mgh --isp $in/P107b/lh.corrtosch172ROI.mgh --isp $in/P109/lh.corrtosch172ROI.mgh --isp $in/P109b/lh.corrtosch172ROI.mgh --isp $in/P110/lh.corrtosch172ROI.mgh --isp $in/P110b/lh.corrtosch172ROI.mgh --isp $in/P112/lh.corrtosch172ROI.mgh --isp $in/P112b/lh.corrtosch172ROI.mgh --isp $in/P115/lh.corrtosch172ROI.mgh --isp $in/P115b/lh.corrtosch172ROI.mgh --isp $in/P116/lh.corrtosch172ROI.mgh --isp $in/P116b/lh.corrtosch172ROI.mgh --isp $in/P117/lh.corrtosch172ROI.mgh --isp $in/P117b/lh.corrtosch172ROI.mgh --isp $in/P118/lh.corrtosch172ROI.mgh --isp $in/P118b/lh.corrtosch172ROI.mgh --isp $in/P119/lh.corrtosch172ROI.mgh --isp $in/P119b/lh.corrtosch172ROI.mgh --isp $in/P120/lh.corrtosch172ROI.mgh --isp $in/P120b/lh.corrtosch172ROI.mgh --isp $in/P121/lh.corrtosch172ROI.mgh --isp $in/P121b/lh.corrtosch172ROI.mgh --isp $in/P122/lh.corrtosch172ROI.mgh --isp $in/P122b/lh.corrtosch172ROI.mgh --isp $in/P123/lh.corrtosch172ROI.mgh --isp $in/P123b/lh.corrtosch172ROI.mgh --isp $in/P124/lh.corrtosch172ROI.mgh --isp $in/P124b/lh.corrtosch172ROI.mgh --out $out/lh.paired-diff_mean.mgh --mean --f $sublist --paired-diff --no-cortex-only
+
+#Right Hemisphere
+/Applications/freesurfer/bin/mris_preproc --target fsaverage --hemi rh --no-prune --isp $in/P101/rh.corrtosch172ROI.mgh --isp $in/P101b/rh.corrtosch172ROI.mgh --isp $in/P102/rh.corrtosch172ROI.mgh --isp $in/P102b/rh.corrtosch172ROI.mgh --isp $in/P103/rh.corrtosch172ROI.mgh --isp $in/P103b/rh.corrtosch172ROI.mgh --isp $in/P105/rh.corrtosch172ROI.mgh --isp $in/P105b/rh.corrtosch172ROI.mgh --isp $in/P106/rh.corrtosch172ROI.mgh --isp $in/P106b/rh.corrtosch172ROI.mgh --isp $in/P107/rh.corrtosch172ROI.mgh --isp $in/P107b/rh.corrtosch172ROI.mgh --isp $in/P109/rh.corrtosch172ROI.mgh --isp $in/P109b/rh.corrtosch172ROI.mgh --isp $in/P110/rh.corrtosch172ROI.mgh --isp $in/P110b/rh.corrtosch172ROI.mgh --isp $in/P112/rh.corrtosch172ROI.mgh --isp $in/P112b/rh.corrtosch172ROI.mgh --isp $in/P115/rh.corrtosch172ROI.mgh --isp $in/P115b/rh.corrtosch172ROI.mgh --isp $in/P116/rh.corrtosch172ROI.mgh --isp $in/P116b/rh.corrtosch172ROI.mgh --isp $in/P117/rh.corrtosch172ROI.mgh --isp $in/P117b/rh.corrtosch172ROI.mgh --isp $in/P118/rh.corrtosch172ROI.mgh --isp $in/P118b/rh.corrtosch172ROI.mgh --isp $in/P119/rh.corrtosch172ROI.mgh --isp $in/P119b/rh.corrtosch172ROI.mgh --isp $in/P120/rh.corrtosch172ROI.mgh --isp $in/P120b/rh.corrtosch172ROI.mgh --isp $in/P121/rh.corrtosch172ROI.mgh --isp $in/P121b/rh.corrtosch172ROI.mgh --isp $in/P122/rh.corrtosch172ROI.mgh --isp $in/P122b/rh.corrtosch172ROI.mgh --isp $in/P123/rh.corrtosch172ROI.mgh --isp $in/P123b/rh.corrtosch172ROI.mgh --isp $in/P124/rh.corrtosch172ROI.mgh --isp $in/P124b/rh.corrtosch172ROI.mgh --out $out/rh.paired-diff.mgh --f $sublist --paired-diff --no-cortex-only
+#compute right hemi mean
+/Applications/freesurfer/bin/mris_preproc --target fsaverage --hemi rh --no-prune --isp $in/P101/rh.corrtosch172ROI.mgh --isp $in/P101b/rh.corrtosch172ROI.mgh --isp $in/P102/rh.corrtosch172ROI.mgh --isp $in/P102b/rh.corrtosch172ROI.mgh --isp $in/P103/rh.corrtosch172ROI.mgh --isp $in/P103b/rh.corrtosch172ROI.mgh --isp $in/P105/rh.corrtosch172ROI.mgh --isp $in/P105b/rh.corrtosch172ROI.mgh --isp $in/P106/rh.corrtosch172ROI.mgh --isp $in/P106b/rh.corrtosch172ROI.mgh --isp $in/P107/rh.corrtosch172ROI.mgh --isp $in/P107b/rh.corrtosch172ROI.mgh --isp $in/P109/rh.corrtosch172ROI.mgh --isp $in/P109b/rh.corrtosch172ROI.mgh --isp $in/P110/rh.corrtosch172ROI.mgh --isp $in/P110b/rh.corrtosch172ROI.mgh --isp $in/P112/rh.corrtosch172ROI.mgh --isp $in/P112b/rh.corrtosch172ROI.mgh --isp $in/P115/rh.corrtosch172ROI.mgh --isp $in/P115b/rh.corrtosch172ROI.mgh --isp $in/P116/rh.corrtosch172ROI.mgh --isp $in/P116b/rh.corrtosch172ROI.mgh --isp $in/P117/rh.corrtosch172ROI.mgh --isp $in/P117b/rh.corrtosch172ROI.mgh --isp $in/P118/rh.corrtosch172ROI.mgh --isp $in/P118b/rh.corrtosch172ROI.mgh --isp $in/P119/rh.corrtosch172ROI.mgh --isp $in/P119b/rh.corrtosch172ROI.mgh --isp $in/P120/rh.corrtosch172ROI.mgh --isp $in/P120b/rh.corrtosch172ROI.mgh --isp $in/P121/rh.corrtosch172ROI.mgh --isp $in/P121b/rh.corrtosch172ROI.mgh --isp $in/P122/rh.corrtosch172ROI.mgh --isp $in/P122b/rh.corrtosch172ROI.mgh --isp $in/P123/rh.corrtosch172ROI.mgh --isp $in/P123b/rh.corrtosch172ROI.mgh --isp $in/P124/rh.corrtosch172ROI.mgh --isp $in/P124b/rh.corrtosch172ROI.mgh --out $out/rh.paired-diff_mean.mgh --mean --f $sublist --paired-diff --no-cortex-only
