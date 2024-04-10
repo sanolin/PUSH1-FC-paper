@@ -1,0 +1,28 @@
+
+parentdir=/Users/sara/Desktop
+recon=/Users/sara/Downloads
+
+#make folder to populate with data files
+in=$parentdir/02_Data
+out=$parentdir/surface_analysis_sch
+
+#set as Freesurfer subjects directory
+unset SUBJECTS_DIR
+SUBJECTS_DIR=$in
+export SUBJECTS_DIR
+export FREESURFER_HOME='/Applications/freesurfer'
+
+
+#define mris_preproc output folder
+data=$parentdir/surface_analysis_sch
+cd $data
+mkdir glmdir_lh
+mkdir glmdir_rh
+
+#left hemi
+out=$data/glmdir_lh
+/Applications/freesurfer/bin/mri_glmfit --y $data/lh.paired-diff.sm02.mgh --osgm --surf fsaverage lh --glmdir $out --save-yhat
+
+#right hemi
+out=$data/glmdir_rh
+/Applications/freesurfer/bin/mri_glmfit --y $data/rh.paired-diff.sm02.mgh --osgm --surf fsaverage rh --glmdir $out --save-yhat

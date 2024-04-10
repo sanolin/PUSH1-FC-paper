@@ -1,0 +1,32 @@
+
+#mask significance surface with significant pvalues (p>.001)
+parentdir=/Users/sara/Desktop
+recon=/Users/sara/Downloads
+
+#make folder to populate with data files
+in=$parentdir/02_Data
+out=$parentdir/surface_analysis_sch
+
+#set as Freesurfer subjects directory
+unset SUBJECTS_DIR
+SUBJECTS_DIR=$in
+export SUBJECTS_DIR
+export FREESURFER_HOME='/Applications/freesurfer'
+
+
+#define mriglmfit output folder
+stats=$parentdir/surface_analysis_sch
+
+#left hemi
+cd $stats/glmdir_lh/osgm
+/Applications/freesurfer/bin/mri_binarize --i sig.mgh --abs --min 1.3 --o sigmask05.mgh
+
+# mask group average with the mask
+/Applications/freesurfer/bin/mri_mask $stats/lh.paired-diff_mean.mgh $stats/glmdir_lh/osgm/sigmask05.mgh $stats/lh.paired-diff_mean_05sigmasked.mgh
+
+#right hemi
+cd $stats/glmdir_rh/osgm
+/Applications/freesurfer/bin/mri_binarize --i sig.mgh --abs --min 1.3 --o sigmask05.mgh
+
+# mask group average with the mask
+/Applications/freesurfer/bin/mri_mask $stats/rh.paired-diff_mean.mgh $stats/glmdir_rh/osgm/sigmask05.mgh $stats/rh.paired-diff_mean_05sigmasked.mgh
