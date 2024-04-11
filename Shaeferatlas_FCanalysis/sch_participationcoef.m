@@ -39,8 +39,8 @@ for ii= 1:length(subs)
         %node 172 (ldlpfd)
         sch={P(172,1)};
         pcoefanalysis(ii,2)=(sch);
-         %node 184 aka 434 (rdlpfc)
-        sch={P(434,1)};
+         %node 188 aka 438 (rdlpfc)
+        sch={P(438,1)};
         pcoefanalysis(ii,3)=(sch);
          %node 28 (lV1)
         sch={P(28,1)};
