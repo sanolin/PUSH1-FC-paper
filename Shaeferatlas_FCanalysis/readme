@@ -1,1 +1,17 @@
 Functional connectivity analysis with Schaefer 2018 500 parcellation atlas with ROI of 172 as estimated target location of TMS
+Source Files:
+r/lh.Schaefer2018_500Parcels_7Networks_order.annot is the annotation file to visualize the Schaefer 500 atlas
+Schaefer500_r/lh_vertexnodes.xlsx contain the node ID for each vertex
+Shaefer500_metadata.xlsx contains the descriptors for each node's system and network (generated with createatlasmetadata.m)
+
+Exploratory analysis:
+1)shaefer172_ROIconn.m (generates the timesseries data for each node)
+2)sch_mris_preproc.job (preps for glm)
+3)sch_mri_glm.job (runs paired compairson pre/post)
+4) sch_smooth.job (smooths compairson outputs)
+5) sch_sigthresh_meanmap.txt (threholds the group average maps be significance)
+6) sch_cogchange2connchange.m (runs correlation between cognitive change to connectivity change)
+
+Network analysis:
+1)schaefer_coorelation.m (generates connectivity matrix for schaefer parcellation for individual and makes group average)
+2)sch_participationcoef.m (runs participation coefficient for selected nodes)
