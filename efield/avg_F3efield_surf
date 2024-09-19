@@ -1,21 +1,44 @@
-#taking the average of all subject's F3 simulation efields
+#taking the average of all subject's F3 simulation efields (already in fsaverage space)
+#convert scalar files to surface overlays
 cd /Volumes/vdrive/helpern_users/benitez_a/PUSH/PUSH_1/PUSH_Analyses/efield_modeling/F3_simulations/
-/Applications/freesurfer/bin/mris_calc P101_simnibs_simulation/fsavg_overlays/lh.P101_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn add P104_simnibs_simulation/fsavg_overlays/lh.P104_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn sum1.mgh
-/Applications/freesurfer/bin/mris_calc sum1.mgh add P105_simnibs_simulation/fsavg_overlays/lh.P105_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn sum2.mgh
-/Applications/freesurfer/bin/mris_calc sum2.mgh add P106_simnibs_simulation/fsavg_overlays/lh.P106_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn sum3.mgh
-/Applications/freesurfer/bin/mris_calc sum3.mgh add P109_simnibs_simulation/fsavg_overlays/lh.P109_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn sum4.mgh
-/Applications/freesurfer/bin/mris_calc sum4.mgh add P110_simnibs_simulation/fsavg_overlays/lh.P110_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn sum5.mgh
-/Applications/freesurfer/bin/mris_calc sum5.mgh add P112_simnibs_simulation/fsavg_overlays/lh.P112_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn sum6.mgh
-/Applications/freesurfer/bin/mris_calc sum6.mgh add P114_simnibs_simulation/fsavg_overlays/lh.P114_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn sum7.mgh
-/Applications/freesurfer/bin/mris_calc sum7.mgh add P115_simnibs_simulation/fsavg_overlays/lh.P115_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn sum8.mgh
-/Applications/freesurfer/bin/mris_calc sum8.mgh add P116_simnibs_simulation/fsavg_overlays/lh.P116_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn sum9.mgh
-/Applications/freesurfer/bin/mris_calc sum9.mgh add P117_simnibs_simulation/fsavg_overlays/lh.P117_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn sum10.mgh
-/Applications/freesurfer/bin/mris_calc sum10.mgh add P118_simnibs_simulation/fsavg_overlays/lh.P118_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn sum11.mgh
-/Applications/freesurfer/bin/mris_calc sum11.mgh add P119_simnibs_simulation/fsavg_overlays/lh.P119_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn sum12.mgh
-/Applications/freesurfer/bin/mris_calc sum12.mgh add P120_simnibs_simulation/fsavg_overlays/lh.P120_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn sum13.mgh
-/Applications/freesurfer/bin/mris_calc sum13.mgh add P121_simnibs_simulation/fsavg_overlays/lh.P121_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn sum14.mgh
-/Applications/freesurfer/bin/mris_calc sum14.mgh add P122_simnibs_simulation/fsavg_overlays/lh.P122_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn sum15.mgh
-/Applications/freesurfer/bin/mris_calc sum15.mgh add P123_simnibs_simulation/fsavg_overlays/lh.P123_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn sum16.mgh
-/Applications/freesurfer/bin/mris_calc sum16.mgh add P124_simnibs_simulation/fsavg_overlays/lh.P124_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn sum17.mgh
+/Applications/freesurfer/bin/mris_convert -c P101_simnibs_simulation/fsavg_overlays/lh.P101_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn $SUBJECTS_DIR/fsaverage/surf/lh.white P101_simnibs_simulation/fsavg_overlays/lh.P101_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_convert -c P104_simnibs_simulation/fsavg_overlays/lh.P104.nii_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn $SUBJECTS_DIR/fsaverage/surf/lh.white P104_simnibs_simulation/fsavg_overlays/lh.P104_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_convert -c P105_simnibs_simulation/fsavg_overlays/lh.P105.nii_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn $SUBJECTS_DIR/fsaverage/surf/lh.white P105_simnibs_simulation/fsavg_overlays/lh.P105_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_convert -c P106_simnibs_simulation/fsavg_overlays/lh.P106.nii_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn $SUBJECTS_DIR/fsaverage/surf/lh.white P106_simnibs_simulation/fsavg_overlays/lh.P106_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_convert -c P109_simnibs_simulation/fsavg_overlays/lh.P109.nii_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn $SUBJECTS_DIR/fsaverage/surf/lh.white P109_simnibs_simulation/fsavg_overlays/lh.P109_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_convert -c P110_simnibs_simulation/fsavg_overlays/lh.P110.nii_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn $SUBJECTS_DIR/fsaverage/surf/lh.white P110_simnibs_simulation/fsavg_overlays/lh.P110_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_convert -c P112_simnibs_simulation/fsavg_overlays/lh.P112.nii_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn $SUBJECTS_DIR/fsaverage/surf/lh.white P112_simnibs_simulation/fsavg_overlays/lh.P112_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_convert -c P114_simnibs_simulation/fsavg_overlays/lh.P114.nii_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn $SUBJECTS_DIR/fsaverage/surf/lh.white P114_simnibs_simulation/fsavg_overlays/lh.P114_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_convert -c P115_simnibs_simulation/fsavg_overlays/lh.P115.nii_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn $SUBJECTS_DIR/fsaverage/surf/lh.white P115_simnibs_simulation/fsavg_overlays/lh.P115_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_convert -c P116_simnibs_simulation/fsavg_overlays/lh.P116.nii_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn $SUBJECTS_DIR/fsaverage/surf/lh.white P116_simnibs_simulation/fsavg_overlays/lh.P116_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_convert -c P117_simnibs_simulation/fsavg_overlays/lh.P117.nii_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn $SUBJECTS_DIR/fsaverage/surf/lh.white P117_simnibs_simulation/fsavg_overlays/lh.P117_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_convert -c P118_simnibs_simulation/fsavg_overlays/lh.P118.nii_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn $SUBJECTS_DIR/fsaverage/surf/lh.white P118_simnibs_simulation/fsavg_overlays/lh.P118_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_convert -c P119_simnibs_simulation/fsavg_overlays/lh.P119.nii_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn $SUBJECTS_DIR/fsaverage/surf/lh.white P119_simnibs_simulation/fsavg_overlays/lh.P119_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_convert -c P120_simnibs_simulation/fsavg_overlays/lh.P120.nii_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn $SUBJECTS_DIR/fsaverage/surf/lh.white P120_simnibs_simulation/fsavg_overlays/lh.P120_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_convert -c P121_simnibs_simulation/fsavg_overlays/lh.P121.nii_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn $SUBJECTS_DIR/fsaverage/surf/lh.white P121_simnibs_simulation/fsavg_overlays/lh.P121_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_convert -c P122_simnibs_simulation/fsavg_overlays/lh.P122.nii_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn $SUBJECTS_DIR/fsaverage/surf/lh.white P122_simnibs_simulation/fsavg_overlays/lh.P122_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_convert -c P123_simnibs_simulation/fsavg_overlays/lh.P123.nii_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn $SUBJECTS_DIR/fsaverage/surf/lh.white P123_simnibs_simulation/fsavg_overlays/lh.P123_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_convert -c P124_simnibs_simulation/fsavg_overlays/lh.P124.nii_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn $SUBJECTS_DIR/fsaverage/surf/lh.white P124_simnibs_simulation/fsavg_overlays/lh.P124_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
 
-/Applications/freesurfer/bin/mris_calc sum17.mgh div 18 avg_overlay.mgh
+
+#add up all the surface overlays
+/Applications/freesurfer/bin/mris_calc -o sum1.mgh P101_simnibs_simulation/fsavg_overlays/lh.P101_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh add P104_simnibs_simulation/fsavg_overlays/lh.P104_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_calc -o sum2.mgh sum1.mgh add P105_simnibs_simulation/fsavg_overlays/lh.P105_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_calc -o sum3.mgh sum2.mgh add P106_simnibs_simulation/fsavg_overlays/lh.P106_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_calc -o sum4.mgh sum3.mgh add P109_simnibs_simulation/fsavg_overlays/lh.P109_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_calc -o sum5.mgh sum4.mgh add P110_simnibs_simulation/fsavg_overlays/lh.P110_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_calc -o sum6.mgh sum5.mgh add P112_simnibs_simulation/fsavg_overlays/lh.P112_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_calc -o sum7.mgh sum6.mgh add P114_simnibs_simulation/fsavg_overlays/lh.P114_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_calc -o sum8.mgh sum7.mgh add P115_simnibs_simulation/fsavg_overlays/lh.P115_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_calc -o sum9.mgh sum8.mgh add P116_simnibs_simulation/fsavg_overlays/lh.P116_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_calc -o sum10.mgh sum9.mgh add P117_simnibs_simulation/fsavg_overlays/lh.P117_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_calc -o sum11.mgh sum10.mgh add P118_simnibs_simulation/fsavg_overlays/lh.P118_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_calc -o sum12.mgh sum11.mgh add P119_simnibs_simulation/fsavg_overlays/lh.P119_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_calc -o sum13.mgh sum12.mgh add P120_simnibs_simulation/fsavg_overlays/lh.P120_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_calc -o sum14.mgh sum13.mgh add P121_simnibs_simulation/fsavg_overlays/lh.P121_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_calc -o sum15.mgh sum14.mgh add P122_simnibs_simulation/fsavg_overlays/lh.P122_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_calc -o sum16.mgh sum15.mgh add P123_simnibs_simulation/fsavg_overlays/lh.P123_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+/Applications/freesurfer/bin/mris_calc -o sum17.mgh sum16.mgh add P124_simnibs_simulation/fsavg_overlays/lh.P124_TMS_1-0001_MagVenture_Cool-B65_scalar.fsavg.E.magn.mgh
+
+#divide by number of participants to create average
+/Applications/freesurfer/bin/mris_calc -o avg_overlay.mgh sum17.mgh div 18
